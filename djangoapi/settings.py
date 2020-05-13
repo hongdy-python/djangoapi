@@ -126,6 +126,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+MEDIA_URL = "/media/"
 # drf全局配置
 REST_FRAMEWORK = {
     # 配置当前项目DRF的渲染器

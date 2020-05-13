@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21147753-2b25-4843-93be-38436cc426e9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/media/pic/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usersapp/migrations/0002_employee.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/djangoapi/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoapi/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usersapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/usersapp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoapi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoapi/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usersapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/usersapp/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usersapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/usersapp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +59,13 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/media/pic" />
     <property name="settings.editor.selected.configurable" value="terminal" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\PycharmProjects\untitled1\day25\untitled\untitled\djangoapi\media\pic" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="djangoapi" type="Python.DjangoServer" factoryName="Django server">
@@ -109,7 +118,8 @@
       <workItem from="1589382421336" duration="258000" />
       <workItem from="1589387531860" duration="954000" />
       <workItem from="1589389336807" duration="1749000" />
-      <workItem from="1589391185717" duration="445000" />
+      <workItem from="1589391185717" duration="1722000" />
+      <workItem from="1589392996902" duration="559000" />
     </task>
     <servers />
   </component>
