@@ -125,3 +125,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# drf全局配置
+REST_FRAMEWORK = {
+    # 配置当前项目DRF的渲染器
+    'DEFAULT_RENDERER_CLASSES': [
+        # 'rest_framework.renderers.JSONRenderer',
+        # 'rest_framework.renderers.TemplateHTMLRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+    # 配置全局的解析器
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',  # json数据包
+        'rest_framework.parsers.FormParser',  # urlencoded数据包
+        'rest_framework.parsers.MultiPartParser',  # form-data数据包
+    ],
+    # 配置异常解析器
+    'EXCEPTION_HANDLER': 'usersapp.utils.exception.exception_handler',
+}

@@ -10,4 +10,6 @@ urlpatterns = [
     path("students/", views.StudentView.as_view()),
     path("students/<str:pk>/", views.StudentView.as_view()),
 
+    path("studentsapi/", views.StudentAPIView.as_view()),
+    path("studentsapi/<str:id>/", views.StudentAPIView.as_view()),
 ]

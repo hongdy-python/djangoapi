@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer, TemplateHTMLRenderer
 from rest_framework.parsers import JSONParser, FormParser, MultiPartParser
 from usersapp.models import Usera
-
+from rest_framework.views import exception_handler as drf_exception_handler
 
 def user(request):
     if request.method == "GET":
@@ -28,10 +28,17 @@ def user(request):
 # csrf_protect：可以为某个视图单独添加csrf认证
 @method_decorator(csrf_exempt, name="dispatch")
 class UserView(View):
+    # 渲染
+    # renderer_classes = [JSONRenderer]  #返回json
+    renderer_classes = [BrowsableAPIRenderer]  # 返回的是浏览器的web qpi
+    # renderer_classes = [BrowsableAPIRenderer]
+    # renderer_classes = [TemplateHTMLRenderer]  #指定页面的名字
+
 
     def get(self, request, *args, **kwargs):
         """提供查询单个  多个用户的API"""
         user_id = kwargs.get("pk")
+
         if user_id:  # 查询单个
             user_values = Usera.objects.filter(pk=user_id).values("id","username", "password", "gender").first()
             if user_values:
@@ -57,6 +64,7 @@ class UserView(View):
     def post(self, request, *args, **kwargs):
         """完成新增单个用户的操作"""
         print(request.POST)
+
         # 对post传递过来的参数进行校验
         try:
             user_obj = Usera.objects.create(**request.POST.dict())
@@ -130,11 +138,10 @@ class UserView(View):
 
 
 class StudentView(APIView):
-    # renderer_classes = [BrowsableAPIRenderer]
-
-    parser_classes = [JSONParser]  # json数据包
+    # 解析
+    # parser_classes = [JSONParser]  # json数据包
     # parser_classes = [FormParser]   # urlencoded数据包
-    # parser_classes = [MultiPartParser]  # form-data数据包
+    # parser_classes = [MultiPartParser]  # form-data数据包 全好使
 
     def get(self, request, *args, **kwargs):
         """DRF获取get请求参数的方式"""
@@ -151,3 +158,61 @@ class StudentView(APIView):
         print(request.data)  # DRF 扩展post请求参数   兼容性最强
 
         return Response("POST SUCCESS")
+from rest_framework.views import exception_handler
+class StudentAPIView(APIView):
+
+    # parser_classes = [JSONParser]
+
+    def get(self,request, *args, **kwargs):
+        stu_id = kwargs.get('id')
+        if stu_id:
+            # student_obj = Usera.objects.filter(id=stu_id).values('username','gender').first()
+            student_obj = Usera.objects.get(pk=stu_id)
+            if student_obj:
+                return JsonResponse({
+                    "status": 200,
+                    "message": "获取用户成功",
+                    "results": student_obj
+                })
+            else:
+                return JsonResponse({
+                    "status": 404,
+                    "message": "获取用户不存在",
+                })
+        else:
+            student_obj = Usera.objects.all().values("username", "gender")
+            if student_obj:
+                return JsonResponse({
+                    "status": 201,
+                    "message": "获取用户列表成功",
+                    "results": list(student_obj)
+                })
+
+    def post(self,request, *args, **kwargs):
+        print(request.data)
+        try:
+            stu_obj = Usera.objects.create(**request.POST.dict())
+            if stu_obj:
+                print(1)
+                return Response({
+                    "status": 200,
+                    "message": "创建用户成功",
+                    "results":{
+                        "username":stu_obj.username,
+                        "password":stu_obj.password
+                    },
+                })
+            else:
+                print(2)
+                return Response({
+                    "status": 201,
+                    "message": "创建用户失败",
+                })
+        except:
+            print(3)
+            return Response({
+                "status": 400,
+                "message": "参数有误",
+            })
+
+
